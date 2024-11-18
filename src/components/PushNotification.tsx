@@ -70,7 +70,7 @@ function urlBase64ToUint8Array(base64String: string) {
     }
    
     return (
-      <div className='bg-gray-800 p-10 text-white rounded-md h-full'>
+      <div className='bg-gray-800 p-4 text-white rounded-md h-full'>
         <h3 className="text-2xl font-bold pb-3">Push Notifications</h3>
         {subscription ? (
           <>

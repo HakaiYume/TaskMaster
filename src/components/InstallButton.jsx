@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 function InstallButton() {
   const [isReadyForInstall, setIsReadyForInstall] = useState(false)
 
-   function Install() {
-    window.addEventListener("beforeinstallprompt", (event) => {
+    function Install() {
+      window.addEventListener("beforeinstallprompt", (event) => {
       // Prevent the mini-infobar from appearing on mobile.
       event.preventDefault();
       console.log("👍", "beforeinstallprompt", event);
@@ -41,9 +41,9 @@ function InstallButton() {
   }, []);
 
   return (
-    <div>
+    <div className='bg-gray-800 p-4 text-white rounded-md h-full'>
       {isReadyForInstall ? (
-        <div className='bg-gray-800 p-10 text-white rounded-md h-full'>
+        <div>
           <h3 className='text-2xl font-bold pb-3'>Install App</h3>
           <div className='container flex justify-between px-10 md:px-0 mx-auto'>
             <p className="text-slate-300"> Have you not installed this app on your device yet?.</p>
@@ -53,7 +53,7 @@ function InstallButton() {
           </div>
         </div>
       ) : (
-        <div className='bg-gray-800 p-10 text-white rounded-md h-full'>
+        <div>
           <h3 className='text-2xl font-bold pb-3 text-center'>Thanks for Install!!!</h3>
           <p className="text-slate-300 text-center"> If you do not install this app, your browser may not be compatible.</p>
         </div>

@@ -18,5 +18,45 @@ self.addEventListener('push', function (event) {
   self.addEventListener('notificationclick', function (event) {
     console.log('Notification click received.')
     event.notification.close()
-    event.waitUntil(clients.openWindow('<https://your-website.com>'))
+    event.waitUntil(clients.openWindow('<https://taskmaster-pwa.netlify.app>'))
   })
+/*
+  self.addEventListener('install', event => {
+    const urlsToCache = [
+      '/',
+      '/tasks/new',
+      '/icon512_rounded.png',
+      '/icon512_maskable.png',
+    ];
+    
+    event.waitUntil(
+      caches.open('static-cache-v1').then(cache => {
+        return cache.addAll(urlsToCache);
+      })
+    );
+  });
+  
+
+  self.addEventListener('fetch', event => {
+    if (event.request.url.includes('/api/tasks')) {
+      event.respondWith(
+        caches.match(event.request).then(response => {
+          return response || fetch(event.request).then(networkResponse => {
+            return caches.open('tasks-cache').then(cache => {
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            });
+          });
+        })
+      );
+    } else {
+      event.respondWith(
+        caches.match(event.request).then(response => {
+          return response || fetch(event.request);
+        })
+      );
+    }
+  });
+*/
+
+  
