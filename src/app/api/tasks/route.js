@@ -9,7 +9,7 @@ export async function GET(request){
         const type = parseInt(searchParams.get('type')) || 0;
         const title = searchParams.get('title');
         
-        let querry = supabase.from('tasks_with_project_name').select()
+        let querry = supabase.from('tasks_with_project_name').select('*', { count: 'exact' })
 
         if(type != 0){
             querry = querry.eq('project_id', type)

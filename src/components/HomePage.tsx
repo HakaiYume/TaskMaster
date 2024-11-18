@@ -16,6 +16,12 @@ function HomePage() {
   const getTask = async () => {
     const res = await fetch(`/api/tasks?title=${title}&type=${type}&page=${page}&pageSize=${pageSize}`);
     const data = await res.json();
+    const total = data.count
+    if ((total - (pageSize * page) <= 0)){
+      setHasMore(false)
+    } else {
+      setHasMore(true)
+    }
     setTasks(data.data);
   };
 
@@ -23,10 +29,6 @@ function HomePage() {
     const res = await fetch('/api/projects')
     const data = await res.json()
     setProjects(data.data)
-  }
-
-  const getpages = async () => {
-
   }
 
   const handleNext = () =>{
@@ -56,7 +58,6 @@ function HomePage() {
 
   useEffect(() => {
     getTask()
-    getpages()
     getProjects()
   }, [page, type]);
 
@@ -86,7 +87,7 @@ function HomePage() {
               onChange={handleChangeSelect}
               value={type}
           >
-            <option value="0">Select Type</option>
+            <option value="0">All</option>
             {projects.length > 0 ? (
                 projects.map(project => (
                     <option key={project.id} value={project.id}>{project.name}</option>
